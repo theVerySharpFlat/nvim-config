@@ -19,4 +19,4 @@ require("bufferline").setup{
 
 vim.keymap.set("n", "<leader>bn", function() vim.cmd("BufferLineCycleNext") end)
 vim.keymap.set("n", "<leader>bN", function() vim.cmd("BufferLineCyclePrev") end)
-vim.keymap.set("n", "<leader>bd", function() vim.cmd("bd") end)
+vim.keymap.set("n", "<leader>bd", function() vim.cmd("bd|bp") end)
