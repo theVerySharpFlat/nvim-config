@@ -2,11 +2,7 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-    'tsserver',
-    'sumneko_lua',
-    'rust_analyzer',
-})
+lsp.ensure_installed({})
 
 -- Fix Undefined global 'vim'
 lsp.configure('sumneko_lua', {
@@ -90,6 +86,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, opts)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set("n", "<leader>vff", function() vim.lsp.buf.format() end, opts)
 end)
 
 lsp.setup()
