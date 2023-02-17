@@ -5,10 +5,11 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    use {'nyoom-engineering/oxocarbon.nvim'}
-    use {'sainnhe/everforest'}
+    use { 'xiyaowong/nvim-transparent' }
 
     use { 'akinsho/toggleterm.nvim' }
+
+    use { 'navarasu/onedark.nvim' }
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',

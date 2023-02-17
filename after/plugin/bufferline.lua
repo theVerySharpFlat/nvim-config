@@ -1,6 +1,6 @@
 require("bufferline").setup{
     options = {
-        separator_style = "padded_slant",
+        separator_style = "slant",
         highlight = {underline = true},
         indicator = {
             style = 'icon'
