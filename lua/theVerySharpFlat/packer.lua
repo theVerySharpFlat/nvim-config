@@ -8,7 +8,9 @@ return require('packer').startup(function(use)
     use { 'akinsho/toggleterm.nvim' }
 
     -- use { 'rktjmp/lush.nvim' }
+    use { 'rose-pine/neovim' }
     use { 'nyoom-engineering/oxocarbon.nvim' }
+    use { 'lewis6991/gitsigns.nvim' }
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
