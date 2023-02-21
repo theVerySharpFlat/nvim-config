@@ -70,6 +70,9 @@ require('telescope').setup{
 }
 vim.keymap.set('n', '<leader>pf', function() builtin.find_files({hidden=true, follow=true}) end)
 vim.keymap.set('n', '<leader>pg', builtin.git_files, {})
-vim.keymap.set('n', '<leader>ps', function()
+vim.keymap.set('n', '<leader>ps', builtin.live_grep, {})
+vim.keymap.set("n", '<leader>pvs', builtin.lsp_workspace_symbols, {})
+--[[vim.keymap.set('n', '<leader>ps', function()
     builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
+]]
