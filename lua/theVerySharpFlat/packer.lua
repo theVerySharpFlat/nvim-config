@@ -10,6 +10,8 @@ return require('packer').startup(function(use)
     -- use { 'rktjmp/lush.nvim' }
     use { 'rose-pine/neovim' }
     use { 'nyoom-engineering/oxocarbon.nvim' }
+
+    use { 'kdheepak/lazygit.nvim' }
     use { 'lewis6991/gitsigns.nvim' }
 
     use {
