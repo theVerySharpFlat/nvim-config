@@ -3,8 +3,8 @@ local actions = require('telescope.actions')
 require('telescope').setup{
     maps = {
         i = {
-            ["<C-n>"] = actions.move_selection_next,
-            ["<C-N>"] = actions.move_selection_previous,
+            ["<C-n"] = actions.move_selection_next,
+            ["<C-p"] = actions.move_selection_previous,
 
             ["<C-c>"] = actions.close,
 
@@ -26,7 +26,7 @@ require('telescope').setup{
             ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
             ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
             ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-            ["<C-l>"] = actions.complete_tag,
+            --["<C>"] = actions.complete_tag,
             ["<C-/>"] = actions.which_key,
             ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
             ["<C-w>"] = { "<c-s-w>", type = "command" },
@@ -74,6 +74,7 @@ vim.keymap.set('n', '<leader>ps', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
 vim.keymap.set("n", '<leader>pvS', builtin.lsp_workspace_symbols, {})
 vim.keymap.set("n", '<leader>pvs', function() builtin.lsp_document_symbols({symbol_width=60}) end)
+vim.keymap.set("n", '<leader>pvd', builtin.diagnostics, {})
 --[[vim.keymap.set('n', '<leader>ps', function()
     builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
