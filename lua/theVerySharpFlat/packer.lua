@@ -61,4 +61,5 @@ return require('packer').startup(function(use)
     }
 
     use { 'nvim-lualine/lualine.nvim' }
+    use { 'simrat39/rust-tools.nvim' }
 end)

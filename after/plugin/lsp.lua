@@ -30,6 +30,8 @@ lsp.configure('lua_ls', {
     }
 })
 
+lsp.skip_server_setup({'rust_analyzer'})
+
 
 local cmp = require('cmp')
 
@@ -82,7 +84,7 @@ lsp.set_preferences({
     }
 })
 
-lsp.on_attach(function(client, bufnr)
+local lsp_attach_fn = function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -98,11 +100,32 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("n", "<leader>vff", function() vim.lsp.buf.format() end, opts)
-end)
+end
+
+lsp.on_attach(lsp_attach_fn)
 
 lsp.setup()
 lsp.nvim_workspace()
 
 vim.diagnostic.config({
     virtual_text = true
+})
+
+local rust_tools = require('rust-tools')
+
+rust_tools.setup({
+    server = {
+        on_attach = function(client, bufnr)
+            lsp_attach_fn(client, bufnr)
+            vim.keymap.set('n', '<leader>vh', rust_tools.hover_actions.hover_actions, {buffer = bufnr, remap = true})
+            vim.keymap.set('n', '<Leader>vca', rust_tools.code_action_group.code_action_group, { buffer = bufnr, remap = true})
+        end,
+        settings = {
+            ["rust-analyzer"] = {
+                checkOnSave = {
+                    command = "clippy"
+                }
+            }
+        }
+    }
 })
