@@ -10,6 +10,7 @@ return require('packer').startup(function(use)
     -- use { 'rktjmp/lush.nvim' }
     use { 'rose-pine/neovim' }
     use { 'nyoom-engineering/oxocarbon.nvim' }
+    use { 'mcchrish/zenbones.nvim' , requires = "rktjmp/lush.nvim"}
 
     use { 'kdheepak/lazygit.nvim' }
     use { 'lewis6991/gitsigns.nvim' }
@@ -28,7 +29,7 @@ return require('packer').startup(function(use)
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
         },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+        tag = 'nightly'                    -- optional, updated every week. (see issue #1193)
     }
 
     use {
@@ -42,24 +43,28 @@ return require('packer').startup(function(use)
         branch = 'v1.x',
         requires = {
             -- LSP Support
-            { 'neovim/nvim-lspconfig' }, -- Required
-            { 'williamboman/mason.nvim' }, -- Optional
+            { 'neovim/nvim-lspconfig' },             -- Required
+            { 'williamboman/mason.nvim' },           -- Optional
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' }, -- Required
-            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'hrsh7th/cmp-buffer' }, -- Optional
-            { 'hrsh7th/cmp-path' }, -- Optional
+            { 'hrsh7th/nvim-cmp' },         -- Required
+            { 'hrsh7th/cmp-nvim-lsp' },     -- Required
+            { 'hrsh7th/cmp-buffer' },       -- Optional
+            { 'hrsh7th/cmp-path' },         -- Optional
             { 'saadparwaiz1/cmp_luasnip' }, -- Optional
-            { 'hrsh7th/cmp-nvim-lua' }, -- Optional
+            { 'hrsh7th/cmp-nvim-lua' },     -- Optional
 
             -- Snippets
-            { 'L3MON4D3/LuaSnip' }, -- Required
+            { 'L3MON4D3/LuaSnip' },             -- Required
             { 'rafamadriz/friendly-snippets' }, -- Optional
         }
     }
 
     use { 'nvim-lualine/lualine.nvim' }
     use { 'simrat39/rust-tools.nvim' }
+
+    use { 'stevearc/aerial.nvim' }
+
+    use { 'numToStr/Comment.nvim' }
 end)
