@@ -1,47 +1,59 @@
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
 
-    use { 'akinsho/toggleterm.nvim' }
+require("lazy").setup({
+    { 'akinsho/toggleterm.nvim' },
 
-    -- use { 'rktjmp/lush.nvim' }
-    use { 'rose-pine/neovim' }
-    use { 'nyoom-engineering/oxocarbon.nvim' }
-    use { 'mcchrish/zenbones.nvim' , requires = "rktjmp/lush.nvim"}
+    -- for tmux
+    { 'christoomey/vim-tmux-navigator' },
 
-    use { 'kdheepak/lazygit.nvim' }
-    use { 'lewis6991/gitsigns.nvim' }
+    --  { 'rktjmp/lush.nvim' }
+    { 'rose-pine/neovim' },
+    { 'nyoom-engineering/oxocarbon.nvim' },
+    { 'mcchrish/zenbones.nvim',          dependencies = "rktjmp/lush.nvim" },
 
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    { 'kdheepak/lazygit.nvim' },
+    { 'lewis6991/gitsigns.nvim' },
+
+    {
+        'nvim-telescope/telescope.nvim',
+        -- tag = '0.1.1',
         -- or                            , branch = '0.1.x',
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
+        dependencies = { { 'nvim-lua/plenary.nvim' } }
+    },
 
-    use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
-    use({ 'nvim-treesitter/playground' })
+    { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
+    { 'nvim-treesitter/playground' },
 
-    use {
+    {
         'nvim-tree/nvim-tree.lua',
-        requires = {
+        dependencies = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
         },
         tag = 'nightly'                    -- optional, updated every week. (see issue #1193)
-    }
+    },
 
-    use {
+    {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
-    }
+    },
 
-    use { 'onsails/lspkind.nvim' }
-    use {
+    { 'onsails/lspkind.nvim' },
+    {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
-        requires = {
+        dependencies = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' },             -- Required
             { 'williamboman/mason.nvim' },           -- Optional
@@ -59,12 +71,12 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },             -- Required
             { 'rafamadriz/friendly-snippets' }, -- Optional
         }
-    }
+    },
 
-    use { 'nvim-lualine/lualine.nvim' }
-    use { 'simrat39/rust-tools.nvim' }
+    { 'nvim-lualine/lualine.nvim' },
+    { 'simrat39/rust-tools.nvim' },
 
-    use { 'stevearc/aerial.nvim' }
+    { 'stevearc/aerial.nvim' },
 
-    use { 'numToStr/Comment.nvim' }
-end)
+    { 'numToStr/Comment.nvim' }
+})
